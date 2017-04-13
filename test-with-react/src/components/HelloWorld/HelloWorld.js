@@ -18,7 +18,7 @@ class HelloWorld extends Component {
     render(){
         return(
         <div>
-            <div>{this.state.greeting} World!</div>
+            <h3>{this.state.greeting} World!</h3>
             <div>
                 <button className="js-french" onClick={this.french}>Frenchify!</button>
             </div>
