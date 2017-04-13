@@ -8,5 +8,7 @@
 https://jasmine.github.io/  
 https://www.npmjs.com/package/phantomjs-prebuilt
 
-#### https://facebook.github.io/jest/docs/tutorial-react.html  
-https://www.npmjs.com/package/enzyme
+#### https://github.com/facebookincubator/create-react-app
+https://facebook.github.io/jest/docs/tutorial-react.html  
+https://www.npmjs.com/package/enzyme  
+https://www.npmjs.com/package/react-test-renderer
