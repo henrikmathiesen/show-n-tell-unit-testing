@@ -15,10 +15,10 @@
     "gulp-angular-templatecache": "2.0.0",
     "gulp-concat": "2.6.1",
     "gulp-connect": "5.0.0",
-    "jasmine-core": "^2.5.2",
+    "jasmine-core": "2.5.2",
     "karma": "1.6.0",
-    "karma-jasmine": "^1.1.0",
-    "karma-phantomjs-launcher": "^1.0.4"
+    "karma-jasmine": "1.1.0",
+    "karma-phantomjs-launcher": "1.0.4"
   },
   "dependencies": {
     "angular": "1.5.8",
