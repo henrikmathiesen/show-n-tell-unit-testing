@@ -1,6 +1,6 @@
 angular
     .module('main.gallery')
-    .factory('galleryInfoService', function ($http) {
+    .factory('galleryInfoService', function ($http, $q) {
         var factory = {};
 
         var root = 'http://jsonplaceholder.typicode.com';
@@ -11,6 +11,7 @@ angular
 
         var onError = function () {
             console.error("Error galleryInfoService");
+            return $q.reject(); // prevents .then() in consumer to be called
         };
 
         factory.getInfo = function (id) {
