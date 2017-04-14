@@ -9,21 +9,30 @@ angular
             bindToController: true
         }
     })
-    .controller('galleryController', function () {
+    .controller('galleryController', function ($interval) {
         var vm = this;
 
         vm.index = 0;
         vm.images = [
-            'Untitled-1.png',
-            'Untitled-2.png',
-            'Untitled-3.png'
+            {
+                id: 1,
+                src: 'Untitled-1.png'
+            },
+            {
+                id: 2,
+                src: 'Untitled-2.png'
+            },
+            {
+                id: 3,
+                src: 'Untitled-3.png'
+            }
         ];
 
         vm.firstImage = 0;
         vm.lastImage = vm.images.length - 1;
 
-        vm.prev = function(){
-            if(vm.index !== vm.firstImage) {
+        vm.prev = function () {
+            if (vm.index !== vm.firstImage) {
                 vm.index--;
             }
             else {
@@ -32,12 +41,14 @@ angular
         }
 
         vm.next = function () {
-            if(vm.index !== vm.lastImage) {
+            if (vm.index !== vm.lastImage) {
                 vm.index++;
             }
             else {
                 vm.index = vm.firstImage;
             }
         };
+
+        $interval(vm.next, 3000);
 
     });
