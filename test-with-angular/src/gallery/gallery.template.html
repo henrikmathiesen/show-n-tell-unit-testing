@@ -1,11 +1,19 @@
 <div class="clearfix">
     <div>
-        <img ng-src="{{vm.images[vm.index].src}}" class="img-responsive center-block" />
+        <img ng-src="{{vm.images[vm.index].src}}" class="img-responsive center-block" ng-click="vm.getInfo()" />
+    </div>
+    <div ng-show="vm.images[vm.index].info" class="center-block" style="max-width:640px">
+        <div>Id from server: {{ vm.images[vm.index].info.id }}</div>
+        <div>{{ vm.images[vm.index].info.body }}</div>
     </div>
     <div class="pull-left">
-        <button class="btn" ng-class="{'btn-primary': vm.index !== vm.firstImage, 'btn-warning': vm.index === vm.firstImage }" ng-click="vm.prev()">Prev</button>
+        <button class="btn" 
+                ng-class="{'btn-primary': vm.index !== vm.firstImage, 'btn-warning': vm.index === vm.firstImage }" 
+                ng-click="vm.prev();vm.cancelInterval();">Prev</button>
     </div>
     <div class="pull-right">
-        <button class="btn" ng-class="{'btn-primary': vm.index !== vm.lastImage, 'btn-warning': vm.index === vm.lastImage }" ng-click="vm.next()">Next</button>
+        <button class="btn" 
+                ng-class="{'btn-primary': vm.index !== vm.lastImage, 'btn-warning': vm.index === vm.lastImage }" 
+                ng-click="vm.next();vm.cancelInterval();">Next</button>
     </div>
 </div>
