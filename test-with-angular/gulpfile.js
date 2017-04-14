@@ -8,6 +8,7 @@ var Server = require('karma').Server;
 var config = {
     src: {
         html: './index.html',
+        img: './img/**/*',
         app: ['./src/**/*.module.js', './src/**/*.js'],
         templates: './src/**/*.template.html',
         lib: ['./node_modules/angular/angular.js']
@@ -21,6 +22,11 @@ var config = {
 
 gulp.task('html', function () {
     return gulp.src(config.src.html)
+        .pipe(gulp.dest(config.bld));
+});
+
+gulp.task('img', function () {
+    return gulp.src(config.src.img)
         .pipe(gulp.dest(config.bld));
 });
 
@@ -45,7 +51,7 @@ gulp.task('js-lib', function () {
         .pipe(gulp.dest(config.bld));
 });
 
-gulp.task('default', ['js-lib', 'js-app', 'template-cache', 'html'], function () { });
+gulp.task('default', ['js-lib', 'js-app', 'template-cache', 'html', 'img'], function () { });
 
 gulp.task('start', ['default'], function () {
     connect.server({
