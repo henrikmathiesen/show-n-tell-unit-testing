@@ -9,7 +9,7 @@ var config = {
         html: './index.html',
         app: ['./src/**/*.module.js', './src/**/*.js'],
         templates: './src/**/*.template.html',
-        lib: [ './node_modules/angular/angular.js', ]
+        lib: [ './node_modules/angular/angular.js']
     },
     bld: './bld',
     server: {
@@ -43,7 +43,11 @@ gulp.task('js-lib', function(){
             .pipe(gulp.dest(config.bld));
 });
 
-gulp.task('connect', function () {
+gulp.task('default', ['js-lib', 'js-app', 'template-cache', 'html'], function(){
+
+});
+
+gulp.task('start', ['default'], function () {
     connect.server({
         root: config.bld,
         port: config.server.port
