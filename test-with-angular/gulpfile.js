@@ -9,7 +9,7 @@ var config = {
     src: {
         html: './index.html',
         img: './img/**/*',
-        app: ['./src/**/*.module.js', './src/**/*.js'],
+        app: ['./src/**/*.module.js', './src/**/*.js', '!./src/**/*.test.js'],
         templates: './src/**/*.template.html',
         lib: ['./node_modules/angular/angular.js']
     },

@@ -1,3 +1,11 @@
-<div>
-    Da Gallery {{ vm.foo }}
+<div class="clearfix">
+    <div>
+        <img ng-src="{{vm.images[vm.index]}}" class="img-responsive center-block" />
+    </div>
+    <div class="pull-left">
+        <button class="btn" ng-class="{'btn-primary': vm.index !== vm.firstImage, 'btn-warning': vm.index === vm.firstImage }" ng-click="vm.prev()">Prev</button>
+    </div>
+    <div class="pull-right">
+        <button class="btn" ng-class="{'btn-primary': vm.index !== vm.lastImage, 'btn-warning': vm.index === vm.lastImage }" ng-click="vm.next()">Next</button>
+    </div>
 </div>
