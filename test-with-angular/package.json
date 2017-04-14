@@ -8,5 +8,15 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-angular-templatecache": "2.0.0",
+    "gulp-concat": "2.6.1",
+    "gulp-connect": "5.0.0"
+  },
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-mocks": "1.5.8"
+  }
 }
