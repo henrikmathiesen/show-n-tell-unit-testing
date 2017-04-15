@@ -120,7 +120,7 @@ describe('The Gallery Component should show images and their caption', function 
             expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
         });
 
-        it('shows next image with an interval of 3 seconds, by calling vm.next()', function(){
+        it('shows next image with an interval of 3 seconds', function(){
             // start
 
             expect(vm.index).toBe(0);
@@ -129,10 +129,6 @@ describe('The Gallery Component should show images and their caption', function 
             // interval
 
             $interval.flush(3000);
-
-            // excpect spy next() to have been called
-            // we already know from test above that vm.next() moves to next image, so we can just verify that it has been called, no need to check DOM
-
             $scope.$digest();
 
             expect(vm.index).toBe(1);

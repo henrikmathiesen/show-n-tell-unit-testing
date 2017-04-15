@@ -9,7 +9,7 @@ angular
             bindToController: true
         }
     })
-    .controller('galleryController', function ($interval, galleryInfoService) {
+    .controller('galleryController', function ($scope, $interval, galleryInfoService) {
         var vm = this;
         var interval;
 
@@ -68,5 +68,10 @@ angular
         };
 
         interval = $interval(vm.next, 3000);
+
+        $scope.$on('$destroy', function () {
+            // ensure that we always close any running intervals when a controller instance is un-loaded.
+            vm.cancelInterval();
+        });
 
     });
