@@ -100,7 +100,7 @@ describe('The Gallery Component should show images and their caption', function 
         it('starts with the first image and then shows next image when user clicks next button and prev image when user clicks prev button', function () {
             // start
 
-            expect(vm.index).toBe(0);
+            expect(vm.index).toBe(vm.firstImage);
             expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
 
             // from start to next
@@ -120,19 +120,46 @@ describe('The Gallery Component should show images and their caption', function 
             expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
         });
 
-        it('shows next image with an interval of 3 seconds', function(){
-            // start
+        it('shows next image with an interval of 3 seconds', function () {
+            // before interval, user was at index 1
 
-            expect(vm.index).toBe(0);
-            expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
+            vm.index = 1;
+            $scope.$digest();
+
 
             // interval
 
             $interval.flush(3000);
             $scope.$digest();
 
-            expect(vm.index).toBe(1);
-            expect(jQelement.find('img').attr('src')).toContain('Untitled-2.png');
+            expect(vm.index).toBe(2);
+            expect(jQelement.find('img').attr('src')).toContain('Untitled-3.png');
+        });
+
+        it('styles the button based on index', function () {
+
+            var $prevButton = jQelement.find('button.btn').eq(0);
+            var $nextButton = jQelement.find('button.btn').eq(1);
+
+            // starting on first image, when displayed prev button has class btn-warning, next button does not
+
+            expect(vm.index).toBe(vm.firstImage);
+            expect($prevButton.hasClass('btn-warning')).toBe(true);
+            expect($nextButton.hasClass('btn-warning')).toBe(false);
+
+            // when user is on last image, next button has class btn-warning, prev button does not
+
+            vm.index = vm.lastImage;
+            $scope.$digest();
+            expect($prevButton.hasClass('btn-warning')).toBe(false);
+            expect($nextButton.hasClass('btn-warning')).toBe(true);
+
+            // when user is on neither first nor last image, neither button have class btn-warning
+            
+            vm.index = 1;
+            $scope.$digest();
+            expect($prevButton.hasClass('btn-warning')).toBe(false);
+            expect($nextButton.hasClass('btn-warning')).toBe(false);
         });
     });
 
