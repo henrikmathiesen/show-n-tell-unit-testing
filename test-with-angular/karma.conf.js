@@ -12,7 +12,11 @@ module.exports = function (config) {
         ],
         logLevel: config.LOG_DISABLE,
         singleRun: true,
-        autoWatch: false
+        autoWatch: false,
+        browserConsoleLogOptions: {
+            level: 'log',
+            terminal: true
+        }
     });
 
 }
