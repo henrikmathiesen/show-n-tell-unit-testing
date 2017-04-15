@@ -32,9 +32,6 @@ describe('The Gallery Component should show images', function () {
         html = jQelement.html();
     }));
 
-    // it blocks (tests) are running in random order
-    it('should render', function(){
-        console.log("1");
-    });
+    //it()
 
 });
