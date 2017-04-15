@@ -1,4 +1,4 @@
-fdescribe('The galleryInfo service fetches data from back end', function () {
+describe('The galleryInfo service fetches data from back end', function () {
 
     var $httpBackend;
     var $log;
