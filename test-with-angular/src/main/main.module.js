@@ -1,2 +1,2 @@
 angular
-    .module('main', ['templatecache', 'main.gallery']);
+    .module('main', ['templatecache', 'main.gallery', 'main.shared']);

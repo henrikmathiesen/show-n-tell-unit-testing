@@ -8,6 +8,8 @@
 # Jasmine API
     - describe blocks groups tests, can nest them
     - beforeEach run before each tests
+        * inject angular services
+        * _underscore_ is a convention to avoid name clashing
     - it block are the tests
     - it blocks run in random order
     - it blocks and the beforeEach is the test setup
