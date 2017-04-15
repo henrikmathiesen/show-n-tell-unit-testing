@@ -229,6 +229,10 @@ describe('The Gallery Component should show images and their caption', function 
         });
 
         it('should kill the interval when component is destroyed', function () {
+            // why test?
+            // requirements cementet, safety when refaktoring
+            // https://angular-ui.github.io/bootstrap/#!#carousel
+            
             // this is hard to test visually, but we can test it here :)
 
             spyOn($interval, 'cancel');
