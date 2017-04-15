@@ -59,16 +59,16 @@ describe('The Gallery Component should show images and their caption', function 
             expect(jQelement.find('button').length).toBe(2);
         });
 
-        it('should have the clickable buttons, for user to change to prev or next image', function () {
+        it('should have click event handlers on the buttons for showing prev image and next image', function () {
             expect(jQelement.find('button').eq(0).attr('ng-click')).toContain('vm.prev()');
             expect(jQelement.find('button').eq(1).attr('ng-click')).toContain('vm.next()');
         });
 
-        it('should have the image clickable, for user to get the caption', function () {
+        it('should have click event handlers on the image for getting image information', function () {
             expect(jQelement.find('img').attr('ng-click')).toContain('vm.getInfo()');
         });
 
-        it('should call function to stop interval when user clicks on either the prev or next button, or the image', function () {
+        it('should have click event handlers on buttons and the image, canceling interval', function () {
             expect(jQelement.find('button').eq(0).attr('ng-click')).toContain('vm.cancelInterval()');
             expect(jQelement.find('button').eq(1).attr('ng-click')).toContain('vm.cancelInterval()');
             expect(jQelement.find('img').attr('ng-click')).toContain('vm.cancelInterval()');
@@ -205,7 +205,26 @@ describe('The Gallery Component should show images and their caption', function 
         });
 
         it('gets info about the image when user clicks it', function () {
+            // mock ajax response
+            var data = { id: 1, body: 'mock ...' };
+            spyOn(galleryInfoService, 'getInfo').and.returnValue($q.when(data));
 
+            // no data yet
+            expect(vm.images[vm.index].info).toBe(null);
+            expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').hasClass('ng-hide')).toBe(true);
+            expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').html().indexOf('mock ...')).toBe(-1);
+            
+            // user clicks image, function on vm is called
+            vm.getInfo();
+            $scope.$digest();
+
+            // service is called with argument 1 (we know from previous tests that we are starting with first image, and its id is 1)
+            expect(galleryInfoService.getInfo).toHaveBeenCalledWith(1);
+            
+            // we have data
+            expect(vm.images[vm.index].info).not.toBe(null);
+            expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').hasClass('ng-hide')).toBe(false);
+            expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').html().indexOf('mock ...')).not.toBe(-1);
         });
     });
 
