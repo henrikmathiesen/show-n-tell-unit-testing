@@ -205,7 +205,8 @@ describe('The Gallery Component should show images and their caption', function 
         });
 
         it('gets info about the image when user clicks it', function () {
-            // mock ajax response (pretending it is our back end, with TypeScript this object would have an interface, with TypeWriter plugin any changes to back end C# would make this test fail)
+            // mock ajax response, ajax calls are forbidden in tests (note *)
+
             var data = { id: 1, body: 'mock ...' };
             spyOn(galleryInfoService, 'getInfo').and.returnValue($q.when(data));
 
@@ -213,20 +214,56 @@ describe('The Gallery Component should show images and their caption', function 
             expect(vm.images[vm.index].info).toBe(null);
             expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').hasClass('ng-hide')).toBe(true);
             expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').html().indexOf('mock ...')).toBe(-1);
-            
+
             // user clicks image, function on vm is called
             vm.getInfo();
             $scope.$digest();
 
-            // service is called with argument 1 (we know from previous tests that we are starting with first image, and its id is 1)
+            // service is called with argument 1 (we know from previous tests that we are starting with first image -- and its id is 1)
             expect(galleryInfoService.getInfo).toHaveBeenCalledWith(1);
-            
+
             // we have data
             expect(vm.images[vm.index].info).not.toBe(null);
             expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').hasClass('ng-hide')).toBe(false);
             expect(jQelement.find('div[ng-show="vm.images[vm.index].info"]').html().indexOf('mock ...')).not.toBe(-1);
         });
+
+        it('should kill the interval when component is destroyed', function () {
+            // this is hard to test visually, but we can test it here :)
+
+            spyOn($interval, 'cancel');
+
+            var isolateScope = jQelement.isolateScope();
+            isolateScope.$destroy();
+
+            expect($interval.cancel).toHaveBeenCalled();
+        });
     });
 
-
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+pretending it is our back end we mock here (and not jsonplaceholder)
+    * back end developer renames property body to content, this test will still pass
+    * but the view binds to .body property still, it would be blank and no console errors
+    * with typescript this object would have had an interface and with the typewriter plugin doing its job this test would fail to compile
+    * to make eveything work: first satisfy the ts compiler by renaming body to content in object, then satisfy the rest of the test by renaming property in view
+
+*/
