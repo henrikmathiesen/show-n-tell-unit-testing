@@ -1,17 +1,21 @@
-<div class="clearfix">
-    <div>
+<div class="row">
+    <div class="col-sm-12">
         <img ng-src="{{vm.images[vm.index].src}}" class="img-responsive center-block" ng-click="vm.getInfo()" />
     </div>
-    <div ng-show="vm.images[vm.index].info" class="center-block" style="max-width:640px">
-        <div>Id from server: {{ vm.images[vm.index].info.id }}</div>
-        <div>{{ vm.images[vm.index].info.body }}</div>
-    </div>
-    <div class="pull-left">
+</div>
+<div class="row">
+    <div class="col-sm-2 text-left">
         <button class="btn" 
                 ng-class="{'btn-primary': vm.index !== vm.firstImage, 'btn-warning': vm.index === vm.firstImage }" 
                 ng-click="vm.prev();vm.cancelInterval();">Prev</button>
     </div>
-    <div class="pull-right">
+    <div class="col-sm-8">
+        <div ng-show="vm.images[vm.index].info">
+            <div>Id from server: {{ vm.images[vm.index].info.id }}</div>
+            <div>{{ vm.images[vm.index].info.body }}</div>
+        </div>
+    </div>
+    <div class="col-sm-2 text-right">
         <button class="btn" 
                 ng-class="{'btn-primary': vm.index !== vm.lastImage, 'btn-warning': vm.index === vm.lastImage }" 
                 ng-click="vm.next();vm.cancelInterval();">Next</button>

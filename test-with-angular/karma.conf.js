@@ -1,9 +1,12 @@
 module.exports = function (config) {
 
+    // jquery.slim.js needed for better DOM querying, like find('.some-class');
+
     config.set({
         browsers: ['PhantomJS'],
         frameworks: ['jasmine'],
         files: [
+            './node_modules/jquery/dist/jquery.slim.js',
             './bld/lib.js',
             './node_modules/angular-mocks/angular-mocks.js',
             './bld/templates.js',
