@@ -17,6 +17,10 @@
         * for primitives, like strings and number, no difference
         * for objects, toBe() checks if it is the same object in memory, toEqual() checks if it has the same properties and values
 
+# Testing
+    - In the template test we test that elements exists, property rendering expressions exist and click handlers exists
+    - In the functionality test we test that changing the those properties and calling those handlers are reflected in the view
+
 */
 
 describe('The Gallery Component should show images and their caption', function () {
@@ -49,7 +53,7 @@ describe('The Gallery Component should show images and their caption', function 
         html = jQelement.html();
     }));
 
-    describe('the template', function () {
+    describe('the template should have elements bound to the view model (vm)', function () {
         it('should be an image gallery, displaying an image with next and prev buttons', function () {
             expect(jQelement.find('img').length).toBe(1);
             expect(jQelement.find('button').length).toBe(2);
@@ -62,6 +66,12 @@ describe('The Gallery Component should show images and their caption', function 
 
         it('should have the image clickable, for user to get the caption', function () {
             expect(jQelement.find('img').attr('ng-click')).toContain('vm.getInfo()');
+        });
+
+        it('should call function to stop interval when user clicks on either the prev or next button, or the image', function () {
+            expect(jQelement.find('button').eq(0).attr('ng-click')).toContain('vm.cancelInterval()');
+            expect(jQelement.find('button').eq(1).attr('ng-click')).toContain('vm.cancelInterval()');
+            expect(jQelement.find('img').attr('ng-click')).toContain('vm.cancelInterval()');
         });
 
         it('should have a place to show the image caption; id and info', function () {
@@ -136,12 +146,37 @@ describe('The Gallery Component should show images and their caption', function 
             expect(jQelement.find('img').attr('src')).toContain('Untitled-3.png');
         });
 
+        it('loops the images from first back to last', function () {
+            // start
+
+            expect(vm.index).toBe(vm.firstImage);
+            expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
+
+            vm.prev();
+            $scope.$digest();
+
+            expect(vm.index).toBe(vm.lastImage);
+            expect(jQelement.find('img').attr('src')).toContain('Untitled-3.png');
+        });
+
+        it('loops the images from last back to first', function () {
+            vm.index = vm.lastImage;
+            $scope.$digest();
+
+            expect(jQelement.find('img').attr('src')).toContain('Untitled-3.png');
+
+            vm.next();
+            $scope.$digest();
+
+            expect(vm.index).toBe(vm.firstImage);
+            expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
+        });
+
         it('styles the button based on index', function () {
+            var $prevButton = jQelement.find('button').eq(0);
+            var $nextButton = jQelement.find('button').eq(1);
 
-            var $prevButton = jQelement.find('button.btn').eq(0);
-            var $nextButton = jQelement.find('button.btn').eq(1);
-
-            // starting on first image, when displayed prev button has class btn-warning, next button does not
+            // starting on first image, when it is displayed then prev button has class btn-warning, next button does not
 
             expect(vm.index).toBe(vm.firstImage);
             expect($prevButton.hasClass('btn-warning')).toBe(true);
@@ -155,11 +190,22 @@ describe('The Gallery Component should show images and their caption', function 
             expect($nextButton.hasClass('btn-warning')).toBe(true);
 
             // when user is on neither first nor last image, neither button have class btn-warning
-            
+
             vm.index = 1;
             $scope.$digest();
             expect($prevButton.hasClass('btn-warning')).toBe(false);
             expect($nextButton.hasClass('btn-warning')).toBe(false);
+        });
+
+        it('stops the interval when user clicks prev or next buttons, or the image', function () {
+            spyOn($interval, 'cancel');
+
+            vm.cancelInterval();
+            expect($interval.cancel).toHaveBeenCalled();
+        });
+
+        it('gets info about the image when user clicks it', function () {
+
         });
     });
 

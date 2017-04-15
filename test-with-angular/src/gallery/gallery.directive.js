@@ -58,8 +58,6 @@ angular
         };
 
         vm.getInfo = function () {
-            vm.cancelInterval();
-
             var currentImageId = vm.images[vm.index].id;
             galleryInfoService.getInfo(currentImageId)
                 .then(function (data) {
