@@ -205,7 +205,7 @@ describe('The Gallery Component should show images and their caption', function 
         });
 
         it('gets info about the image when user clicks it', function () {
-            // mock ajax response
+            // mock ajax response (pretending it is our back end, with TypeScript this object would have an interface, with TypeWriter plugin any changes to back end C# would make this test fail)
             var data = { id: 1, body: 'mock ...' };
             spyOn(galleryInfoService, 'getInfo').and.returnValue($q.when(data));
 
