@@ -1,7 +1,5 @@
 module.exports = function (config) {
 
-    // jquery.slim.js needed for better DOM querying, like find('.some-class');
-
     config.set({
         browsers: ['PhantomJS'],
         frameworks: ['jasmine'],
