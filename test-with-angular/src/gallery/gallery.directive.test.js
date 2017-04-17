@@ -130,7 +130,7 @@ describe('The Gallery Component should show images and their caption', function 
             vm.prev();
             $scope.$digest();
 
-            expect(vm.index).toBe(0);
+            expect(vm.index).toBe(vm.firstImage);
             expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
         });
 
@@ -249,6 +249,15 @@ describe('The Gallery Component should show images and their caption', function 
     });
 
 });
+
+
+
+
+
+
+
+
+
 
 
 
