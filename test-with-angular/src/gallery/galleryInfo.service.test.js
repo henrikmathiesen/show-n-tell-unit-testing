@@ -6,7 +6,7 @@ describe('The galleryInfo service fetches data from back end', function () {
     var URLS_CONSTANT;
 
     beforeEach(angular.mock.module('templatecache'));
-    beforeEach(angular.mock.module('main.shared'));     // need this module now since URLS_CONSTANT is in it
+    beforeEach(angular.mock.module('main.shared'));
     beforeEach(angular.mock.module('main.gallery'));
 
     beforeEach(angular.mock.inject(function (_$httpBackend_, _$log_, _galleryInfoService_, _URLS_CONSTANT_) {

@@ -38,6 +38,7 @@ describe('The Gallery Component should show images and their caption', function 
     var html;
 
     beforeEach(angular.mock.module('templatecache'));
+    beforeEach(angular.mock.module('main.shared'));         // need this module now since URLS_CONSTANT is in it, and galleryInfoService is using it
     beforeEach(angular.mock.module('main.gallery'));
 
     beforeEach(angular.mock.inject(function ($rootScope, _$compile_, _$q_, _$interval_, _galleryInfoService_) {
@@ -112,6 +113,7 @@ describe('The Gallery Component should show images and their caption', function 
         it('starts with the first image and then shows next image when user clicks next button and prev image when user clicks prev button', function () {
             // start
 
+            expect(vm.firstImage).toBe(0);
             expect(vm.index).toBe(vm.firstImage);
             expect(jQelement.find('img').attr('src')).toContain('Untitled-1.png');
 
