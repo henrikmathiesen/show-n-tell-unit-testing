@@ -21,7 +21,7 @@
 
 # Testing
     - In the template test we test that elements exists, property rendering expressions exist and click handlers exists
-    - In the functionality test we test that changing the those properties and calling those handlers are reflected in the view
+    - In the functionality test we test that changing those properties and calling those handlers are reflected in the view
 
 */
 
