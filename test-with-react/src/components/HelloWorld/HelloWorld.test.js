@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import HelloWorld from './HelloWorld';
 
+// Jest test api is very similiral to Jasmine
+
 describe("HelloWorld Component should greet the world in two languages", () => {
 
     const component = shallow(
