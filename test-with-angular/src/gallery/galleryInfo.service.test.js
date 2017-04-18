@@ -16,6 +16,8 @@ describe('The galleryInfo service fetches data from back end', function () {
         URLS_CONSTANT = _URLS_CONSTANT_;
     }));
 
+    // spelling error in service, makes test fail
+    // can run a single test with f, also works on describe
     it('gets the response from back end, returning the data in it', function () {
         var mockData = { id: 1, body: 'mock ...' };
         $httpBackend.when('GET', URLS_CONSTANT.API + '/posts/1').respond(200, mockData);
