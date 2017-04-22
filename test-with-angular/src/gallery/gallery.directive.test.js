@@ -58,6 +58,8 @@ describe('The Gallery Component should show images and their caption', function 
 
     describe('the template should have elements bound to the view model (vm)', function () {
         it('should be an image gallery, displaying an image with next and prev buttons', function () {
+            console.log(html);
+
             expect(jQelement.find('img').length).toBe(1);
             expect(jQelement.find('button').length).toBe(2);
         });
