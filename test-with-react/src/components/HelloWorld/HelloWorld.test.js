@@ -5,7 +5,7 @@ import HelloWorld from './HelloWorld';
 
 // Jest test api is very similar to Jasmine
 
-describe("HelloWorld Component should greet the world in two languages", () => {
+describe('HelloWorld Component should greet the world in two languages', () => {
 
     const component = shallow(
         <HelloWorld />
