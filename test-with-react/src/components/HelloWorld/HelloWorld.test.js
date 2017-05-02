@@ -11,6 +11,10 @@ describe('HelloWorld Component should greet the world in two languages', () => {
         <HelloWorld />
     );
 
+    it('Starts with an english greeting', () => {
+        expect(component.text()).toContain('Hello');
+    });
+
     it('Modifies the greeting when french button is clicked', () => {
         component.find('button.js-french').simulate('click');
         expect(component.text()).toContain('Bonjour');
