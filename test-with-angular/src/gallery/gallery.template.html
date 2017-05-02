@@ -8,18 +8,18 @@
 </div>
 <div class="row">
     <div class="col-sm-2 text-left">
-        <button class="btn" 
+        <button class="btn btn-block" 
                 ng-class="{'btn-primary': vm.index !== vm.firstImage, 'btn-warning': vm.index === vm.firstImage }" 
                 ng-click="vm.cancelInterval();vm.prev();">Prev</button>
     </div>
     <div class="col-sm-8">
-        <div ng-show="vm.images[vm.index].info">
+        <div ng-show="vm.images[vm.index].info" class="center-block" style="max-width:640px;">
             <div>Id from server: {{ vm.images[vm.index].info.id }}</div>
             <div>{{ vm.images[vm.index].info.body }}</div>
         </div>
     </div>
     <div class="col-sm-2 text-right">
-        <button class="btn" 
+        <button class="btn btn-block" 
                 ng-class="{'btn-primary': vm.index !== vm.lastImage, 'btn-warning': vm.index === vm.lastImage }" 
                 ng-click="vm.cancelInterval();vm.next();">Next</button>
     </div>
