@@ -48,7 +48,7 @@ angular
             }
         }
 
-        vm.next = function (wasLoop) {
+        vm.next = function () {
             if (vm.index !== vm.lastImage) {
                 vm.index++;
             }
